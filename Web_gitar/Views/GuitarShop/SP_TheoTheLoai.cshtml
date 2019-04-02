@@ -1,0 +1,53 @@
+﻿
+@using GuitarShop.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<ChiTietDan>
+@{
+    ViewBag.Title = "Thể Loại";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div style="text-align:center;font-style:italic;font-weight:bold">Tìm thấy: @{Html.RenderAction("countTheLoaiPartial", "GuitarShop");} sản phẩm</div>
+<div class="wrap">
+    @foreach (var dan in Model)
+    {
+        <div class="box1">
+            <div class="col_1_of_3 span_1_of_3">
+                <a href=" @Url.Action("ChiTietDan", "GuitarShop", new { id = dan.MaDan }) ">
+                    <div class="view view-fifth">
+                        <div class="top_box">
+                            <p class="m_1" style="font-style:oblique">@dan.TenDan</p>
+                            <div class="grid_img">
+                                <div class="css3"><img src="~/HinhSanPham/@dan.AnhBia " width="300" height="370" /></div>
+                                <div class="mask">
+                                    <div class="info">Chi Tiết</div>
+                                </div>
+                            </div>
+                            <div class="price">@String.Format("{0:0,0}", dan.GiaBan) VNĐ</div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+@*Tạo liên kết các trang *@
+<br />
+<div class="col_2_of_footer-top span_1_of_footer-top" style="margin-left:100px">
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("SP_TheoTheLoai", new { page = page }))
+        <p style="font-size:20px">Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount</p>
+    </div>
+
+    <style>
+        .MenuTrang li {
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 0.5px solid;
+            font-size: 18px;
+        }
+    </style>
+</div>
+<br /><br /><br /><br /><br /><br />
