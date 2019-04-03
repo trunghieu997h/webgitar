@@ -1,0 +1,15 @@
+﻿@model IEnumerable<GuitarShop.Models.ThuongHieuDan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<br /><br />
+<div class="wrap">
+    <div class="content-bottom">
+        @foreach (var thuonghieu in Model)
+        {
+            <img src="~/LogoThuongHieu/@thuonghieu.Logo" width="300" height="370" />
+        }
+    </div>
+</div>
